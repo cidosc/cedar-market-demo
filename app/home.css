@@ -1,0 +1,1057 @@
+.home-page {
+  overflow: clip;
+}
+
+/* Hero ---------------------------------------------------------------------
+   Desktop: headline and purchase column on the left, the card on the right.
+   Phone: headline, then the card and product choice, then price and buy. */
+.home-hero {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(180deg, #fcfbf9 0%, #f9f7f4 100%);
+  border-bottom: 1px solid var(--line);
+}
+
+/* Low-poly facets in the same language as the card art, fading out toward the copy. */
+.home-hero::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 62%;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 480' preserveAspectRatio='none'%3E%3Cpath fill='%23e5dbd1' d='M0 0L74 0L86 52zM149 0L267 0L231 75zM149 0L231 75L167 54zM0 53L86 52L57 182zM86 52L167 54L158 139zM86 52L158 139L57 182zM57 182L158 139L167 229zM158 139L233 149L263 237zM158 139L263 237L167 229zM233 149L363 141L330 258zM67 251L167 229L147 315zM167 229L263 237L274 299z'/%3E%3Cpath fill='%23ece5dd' d='M0 0L86 52L0 53zM74 0L149 0L167 54zM0 53L57 182L0 189zM0 189L57 182L67 251zM0 189L67 251L0 214zM57 182L167 229L67 251zM0 214L67 251L72 349zM0 214L72 349L0 334z'/%3E%3Cpath fill='%23e8dfd6' d='M74 0L167 54L86 52zM315 0L431 0L411 88zM315 0L411 88L364 57zM506 0L543 85L411 88zM231 75L233 149L158 139zM231 75L364 57L233 149zM363 141L434 168L330 258zM263 237L330 258L274 299zM72 349L92 405L0 412zM92 405L78 480L0 480zM92 405L169 420L182 480zM92 405L182 480L78 480z'/%3E%3Cpath fill='%23f0eae4' d='M267 0L315 0L231 75zM315 0L364 57L231 75zM506 0L600 0L600 74zM506 0L600 74L543 85zM167 54L231 75L158 139zM364 57L363 141L233 149zM543 85L506 163L434 168zM543 85L600 74L600 134zM434 168L441 225L330 258zM434 168L519 242L441 225zM67 251L147 315L72 349zM330 258L342 292L274 299zM0 334L72 349L0 412zM274 299L342 292L286 398zM342 292L439 336L441 409zM342 292L441 409L353 374zM353 374L441 409L340 480z'/%3E%3Cpath fill='%23e0d5ca' d='M431 0L506 0L411 88zM364 57L411 88L434 168zM364 57L434 168L363 141zM411 88L543 85L434 168zM233 149L330 258L263 237zM434 168L506 163L519 242zM167 229L274 299L147 315zM330 258L441 225L439 336zM519 242L519 343L439 336zM519 242L600 263L600 309zM72 349L147 315L169 420zM72 349L169 420L92 405zM147 315L274 299L169 420zM274 299L286 398L169 420zM342 292L353 374L286 398zM439 336L519 343L546 419zM0 412L92 405L0 480zM169 420L286 398L227 480zM286 398L353 374L227 480z'/%3E%3Cpath fill='%23eee7e0' d='M543 85L600 134L506 163zM600 134L600 263L519 242zM330 258L439 336L342 292zM441 225L519 242L439 336zM519 343L600 309L546 419zM169 420L227 480L182 480zM353 374L340 480L227 480zM441 409L407 480L340 480zM546 419L600 387L600 480z'/%3E%3Cpath fill='%23e3d8cd' d='M506 163L600 134L519 242zM519 242L600 309L519 343zM439 336L546 419L441 409zM600 309L600 387L546 419zM441 409L546 419L407 480zM546 419L490 480L407 480zM546 419L600 480L490 480z'/%3E%3C/svg%3E") center / cover no-repeat;
+  -webkit-mask-image: radial-gradient(120% 95% at 85% 45%, #000 30%, transparent 78%);
+  mask-image: radial-gradient(120% 95% at 85% 45%, #000 30%, transparent 78%);
+  /* Kept faint: at full strength the facets compete with the card art's own. */
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+.home-hero-grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.92fr);
+  grid-template-rows: auto 1fr;
+  grid-template-areas:
+    "head visual"
+    "copy visual";
+  column-gap: clamp(48px, 7vw, 104px);
+  min-height: 680px;
+  padding-top: 68px;
+  padding-bottom: 76px;
+}
+
+.hero-head {
+  grid-area: head;
+  position: relative;
+  z-index: 1;
+  align-self: end;
+}
+
+.hero-copy {
+  grid-area: copy;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-kicker,
+.section-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #705c47;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+}
+
+.hero-kicker {
+  min-height: 30px;
+  padding: 6px 13px 6px 11px;
+  border: 1px solid #e5dbd1;
+  border-radius: 999px;
+  background: #f5f0eb;
+}
+
+.hero-kicker::before {
+  content: "";
+  flex: none;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #a5835e;
+  box-shadow: 0 0 0 0 rgb(94 165 111 / 45%);
+  animation: kicker-dot 2.6s ease-out infinite;
+}
+
+@keyframes kicker-dot {
+  0% {
+    box-shadow: 0 0 0 0 rgb(94 165 111 / 45%);
+  }
+  70%,
+  100% {
+    box-shadow: 0 0 0 7px rgb(94 165 111 / 0%);
+  }
+}
+
+.hero-head h1 {
+  margin: 22px 0 0;
+  color: #302922;
+  font-size: clamp(58px, 6.9vw, 94px);
+  font-weight: 760;
+  line-height: 1;
+  letter-spacing: -0.06em;
+  min-height: 2em;
+}
+
+.hero-head h1 span {
+  display: block;
+  color: #74604b;
+  letter-spacing: var(--display-tracking);
+}
+
+.hero-description {
+  max-width: 500px;
+  margin: 26px 0 0;
+  color: #665f57;
+  font-size: 17px;
+  line-height: 1.75;
+  min-height: 3.5em;
+  text-wrap: pretty;
+}
+
+.hero-buy {
+  display: flex;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 16px 22px;
+  margin: 34px 0 22px;
+}
+
+.hero-price > span {
+  display: block;
+  margin-bottom: 8px;
+  color: #70665c;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.hero-price strong {
+  display: block;
+  font-size: 42px;
+  font-weight: 760;
+  line-height: 1;
+  letter-spacing: -0.045em;
+  font-variant-numeric: tabular-nums;
+}
+
+/* The bundle quote takes the price's line box so switching products
+   does not move the buttons below. */
+.hero-price .hero-price-quote {
+  display: flex;
+  align-items: flex-end;
+  min-height: 42px;
+  font-size: 22px;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+.hero-stock {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin-bottom: 3px;
+  padding: 7px 12px;
+  border: 1px solid #e2d9cf;
+  border-radius: 999px;
+  background: #f8f5f1;
+  color: #6a543d;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.hero-stock[data-stock="unavailable"] {
+  border-color: #e2d7d3;
+  background: #faf5f2;
+  color: #805b50;
+}
+.hero-stock[data-stock="consult"] {
+  border-color: #deded3;
+  background: #f7f7f1;
+  color: #6b6d50;
+}
+
+.hero-stock::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #b8a38d;
+}
+
+.hero-stock[data-stock="unavailable"]::before {
+  background: #b38b7e;
+}
+.hero-stock[data-stock="consult"]::before {
+  background: #a0a37c;
+}
+
+.hero-purchase {
+  /* Reserve the height of the two-button layout so choosing the quote-only
+     bundle product does not pull the rest of the page up. */
+  min-height: 124px;
+}
+
+.hero-copy .purchase-actions {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+  align-items: center;
+  gap: 10px;
+  max-width: 480px;
+}
+
+.hero-copy .purchase-actions .button {
+  min-width: 0;
+}
+
+.hero-copy .purchase-actions .purchase-main {
+  justify-content: space-between;
+  min-height: 92px;
+  padding: 18px 20px;
+  border-radius: 14px;
+  text-align: left;
+}
+
+.purchase-main-copy strong,
+.purchase-main-copy small {
+  display: block;
+}
+.purchase-main-copy strong {
+  font-size: 18px;
+  letter-spacing: -0.01em;
+}
+.purchase-main-copy small {
+  max-width: 200px;
+  margin-top: 8px;
+  color: #e5dcd3;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.45;
+}
+
+.hero-copy .purchase-actions .purchase-main > span[aria-hidden] {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgb(255 255 255 / 12%);
+  transition: background 0.18s;
+}
+
+.hero-copy .purchase-actions .purchase-main:hover > span[aria-hidden] {
+  background: rgb(255 255 255 / 22%);
+}
+
+.hero-copy .purchase-actions .button-secondary {
+  min-height: 52px;
+}
+
+.hero-copy .purchase-note {
+  margin: 12px 0 0;
+  color: #70665c;
+  font-size: 12px;
+}
+
+.hero-smallprint {
+  max-width: 480px;
+  margin: 22px 0 0;
+  color: #746d66;
+  font-size: 13px;
+  line-height: 1.65;
+  min-height: 3.3em;
+}
+
+.hero-help-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  margin-top: 6px;
+  color: #695036;
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: underline;
+  text-decoration-color: #c4b6a7;
+  text-underline-offset: 5px;
+  transition: text-decoration-color 0.15s;
+}
+
+.hero-help-link:hover {
+  text-decoration-color: currentColor;
+}
+
+/* Card stage: the chosen card sits on top of a fanned deck of the others. */
+.hero-visual {
+  grid-area: visual;
+  position: relative;
+  align-self: center;
+  justify-self: center;
+  min-width: 0;
+  width: min(100%, 470px);
+  scroll-margin-top: 24px;
+}
+
+.card-preview {
+  position: relative;
+  z-index: 1;
+  min-width: 0;
+  margin: 0;
+}
+
+/* Deck: the chosen card on top, the other three fanned behind it. */
+.card-deck {
+  position: relative;
+  padding-top: 11%;
+  isolation: isolate;
+}
+
+.card-deck-back {
+  position: absolute;
+  z-index: 0;
+  top: 11%;
+  left: 0;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 960 / 605;
+  border-radius: 12px;
+  cursor: pointer;
+  filter: saturate(0.82) brightness(0.97);
+  box-shadow: 0 10px 22px -16px rgb(32 66 42 / 55%);
+  transform-origin: 50% 120%;
+  transition:
+    transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1),
+    filter 0.2s;
+  -webkit-user-drag: none;
+  user-select: none;
+}
+
+.card-deck-back[data-slot="0"] {
+  transform: translate(-7%, -9%) rotate(-7deg) scale(0.94);
+}
+.card-deck-back[data-slot="1"] {
+  transform: translate(0, -15%) rotate(-0.5deg) scale(0.9);
+}
+.card-deck-back[data-slot="2"] {
+  transform: translate(7%, -9%) rotate(6.5deg) scale(0.94);
+}
+
+.card-deck-back:hover {
+  filter: saturate(1) brightness(1.02);
+}
+.card-deck-back[data-slot="0"]:hover {
+  transform: translate(-8%, -13%) rotate(-8deg) scale(0.94);
+}
+.card-deck-back[data-slot="1"]:hover {
+  transform: translate(0, -20%) rotate(-0.5deg) scale(0.9);
+}
+.card-deck-back[data-slot="2"]:hover {
+  transform: translate(8%, -13%) rotate(7.5deg) scale(0.94);
+}
+
+/* Same pivot as the fanned cards, so a dealt card travels along the fan. */
+.card-deck .card-stage {
+  z-index: 1;
+  transform-origin: 50% 120%;
+}
+
+.card-stage {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 960 / 605;
+  overflow: visible;
+  border-radius: 12px;
+  background: #e7dfd7;
+}
+.card-stage[data-enhanced="true"] {
+  background: transparent;
+}
+
+/* Soft contact shadow so the card reads as an object lifted off the tray. */
+.card-stage::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  left: 7%;
+  right: 7%;
+  bottom: -16px;
+  height: 34px;
+  border-radius: 50%;
+  background: radial-gradient(
+    closest-side,
+    rgb(32 66 42 / 30%),
+    rgb(32 66 42 / 0%)
+  );
+  pointer-events: none;
+}
+
+.card-stage::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  border-radius: inherit;
+  pointer-events: none;
+  background: linear-gradient(
+    110deg,
+    transparent 40%,
+    #ffffff1c 46%,
+    #ffffff50 50%,
+    #ffffff1c 54%,
+    transparent 60%
+  );
+  background-size: 280% 100%;
+  animation: card-shimmer 8.4s linear infinite;
+  mix-blend-mode: screen;
+}
+
+@keyframes card-shimmer {
+  0% {
+    background-position: 100% 0;
+    opacity: 0;
+  }
+  4% {
+    background-position: 100% 0;
+    opacity: 1;
+  }
+  34% {
+    background-position: 0 0;
+    opacity: 1;
+  }
+  40%,
+  100% {
+    background-position: 0 0;
+    opacity: 0;
+  }
+}
+
+.card-stage > img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: inherit;
+}
+
+/* Keep the decoded face and its rounded light layers on one rotating plane. */
+.card-stage[data-enhanced="true"] > img {
+  opacity: 0;
+}
+.card-stage[data-enhanced="true"]::after {
+  display: none;
+}
+
+.card-stage .card-effect-mount .holo-card__front {
+  transform: none;
+  transform-style: flat;
+  overflow: hidden;
+}
+
+.card-stage .card-effect-mount .holo-card__front > img,
+.card-stage .card-effect-mount .holo-card__front > .holo-card__shine,
+.card-stage .card-effect-mount .holo-card__front > .holo-card__glare {
+  transform: none;
+  transform-style: flat;
+}
+
+.card-effect-mount {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  align-items: center;
+}
+
+.card-effect-mount:empty {
+  pointer-events: none;
+}
+
+.card-effect-mount[data-ready="false"] {
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.card-effect-mount .bc-card {
+  width: 100%;
+  height: auto;
+}
+
+.card-stage img {
+  -webkit-user-drag: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.card-preview figcaption {
+  margin-top: 30px;
+}
+
+.card-themes {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.card-themes button {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 18px;
+  grid-template-areas:
+    "name mark"
+    "price mark";
+  align-items: center;
+  column-gap: 8px;
+  min-width: 0;
+  min-height: 66px;
+  padding: 11px 12px 11px 14px;
+  border: 1px solid #dfd5cb;
+  border-radius: 12px;
+  background: rgb(250 252 248 / 82%);
+  color: #584b3d;
+  font-size: 14px;
+  text-align: left;
+  transition:
+    background 0.15s,
+    border-color 0.15s,
+    box-shadow 0.15s;
+}
+
+.card-themes button .card-option-name {
+  grid-area: name;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.card-themes button small {
+  grid-area: price;
+  margin-top: 4px;
+  color: #78716a;
+  font-size: 12px;
+  line-height: 1.3;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Radio-style mark: a ring, filled when the product is selected. */
+.card-themes button::after {
+  content: "";
+  grid-area: mark;
+  width: 18px;
+  height: 18px;
+  border: 1.5px solid #c2b4a6;
+  border-radius: 50%;
+  background: #fff;
+  transition:
+    border-color 0.15s,
+    box-shadow 0.15s;
+}
+
+.card-themes button:hover {
+  border-color: #b3a391;
+  background: #fff;
+}
+
+.card-themes button[aria-pressed="true"] {
+  border-color: var(--deep);
+  background: #fff;
+  color: #3d2e1f;
+  box-shadow:
+    inset 0 0 0 1px var(--deep),
+    0 6px 16px -12px rgb(36 74 48 / 60%);
+}
+
+.card-themes button[aria-pressed="true"]::after {
+  border-color: var(--deep);
+  box-shadow: inset 0 0 0 4px #fff;
+  background: var(--deep);
+}
+
+.card-themes button[aria-pressed="true"] small {
+  color: #6a553f;
+}
+
+.card-effect-error {
+  margin: 12px 0 0;
+  color: #8e5f50;
+  font-size: 12px;
+}
+
+/* Notes: three short rules, each under an oversized numeral. */
+.home-notes {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(240px, 300px);
+  grid-template-areas:
+    "heading aside"
+    "list list";
+  align-items: end;
+  column-gap: clamp(32px, 6vw, 96px);
+  row-gap: 48px;
+  padding-top: 96px;
+  padding-bottom: 104px;
+}
+
+.notes-heading {
+  grid-area: heading;
+}
+
+.notes-heading h2,
+.questions-heading h2 {
+  margin: 14px 0 13px;
+  font-size: clamp(30px, 3.4vw, 44px);
+  font-weight: 760;
+  line-height: 1.15;
+  letter-spacing: var(--display-tracking);
+  text-wrap: balance;
+}
+
+.notes-heading p {
+  margin: 0;
+  color: #787068;
+  font-size: 15px;
+  line-height: 1.65;
+}
+
+.notes-list {
+  grid-area: list;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--line-strong);
+}
+
+.notes-list li {
+  position: relative;
+  padding: 26px clamp(18px, 2.4vw, 34px) 0 0;
+}
+
+.notes-list li + li {
+  padding-left: clamp(18px, 2.4vw, 34px);
+  border-left: 1px solid var(--line);
+}
+
+.note-index {
+  display: block;
+  margin-bottom: 18px;
+  color: #d9ccbe;
+  font-size: clamp(64px, 7vw, 96px);
+  font-weight: 800;
+  line-height: 0.8;
+  letter-spacing: -0.06em;
+  font-variant-numeric: tabular-nums;
+}
+
+.notes-list h3 {
+  margin: 0 0 8px;
+  font-size: 18px;
+  letter-spacing: -0.01em;
+}
+
+.notes-list p {
+  max-width: 340px;
+  margin: 0;
+  color: #736b63;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.notes-aside {
+  grid-area: aside;
+  position: relative;
+  padding: 22px 22px 20px;
+  border: 1px solid #e6dfd7;
+  border-radius: 18px 18px 18px 4px;
+  background: #fff;
+  box-shadow: 5px 6px 0 #efe9e2;
+}
+
+.notes-aside > span {
+  color: #6b6156;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.notes-aside p {
+  margin: 8px 0 16px;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+.notes-aside-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.notes-aside-actions a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  gap: 4px;
+  min-height: 44px;
+  padding: 8px 9px;
+  border: 1px solid #e8e1d9;
+  border-radius: 8px;
+  background: #faf8f5;
+  color: #695137;
+  font-size: 13px;
+  font-weight: 700;
+  white-space: nowrap;
+  transition:
+    background 0.15s,
+    border-color 0.15s;
+}
+
+.notes-aside-actions a:hover {
+  border-color: #c6b7a6;
+  background: #fff;
+}
+
+.home-faq {
+  padding: 83px 0 91px;
+  background: #fff;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.faq-layout {
+  display: grid;
+  grid-template-columns: minmax(205px, 0.7fr) minmax(0, 1.5fr);
+  gap: clamp(50px, 9vw, 130px);
+}
+
+.questions-heading {
+  position: relative;
+  isolation: isolate;
+}
+.questions-heading::before {
+  content: "?";
+  position: absolute;
+  z-index: -1;
+  top: -68px;
+  right: 6px;
+  color: #f4f0eb;
+  font-size: clamp(150px, 16vw, 225px);
+  font-weight: 700;
+  line-height: 1;
+  pointer-events: none;
+}
+
+.questions-heading > a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: #6d543a;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.question-list details {
+  border-top: 1px solid var(--line);
+}
+
+.question-list details:last-child {
+  border-bottom: 1px solid var(--line);
+}
+
+.question-list summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  min-height: 68px;
+  padding: 17px 2px;
+  list-style: none;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.45;
+}
+
+.question-list summary::-webkit-details-marker {
+  display: none;
+}
+
+.question-list summary span {
+  color: #947f69;
+  font-size: 23px;
+  font-weight: 400;
+  transition: transform 0.18s;
+}
+
+.question-list details[open] summary span {
+  transform: rotate(45deg);
+}
+
+.question-answer {
+  max-width: 650px;
+  padding: 0 36px 22px 2px;
+}
+
+.question-answer p {
+  margin: 0 0 7px;
+  color: #706961;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.question-answer a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+  color: #6c5339;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+/* Closing support prompt, drawn as a chat bubble. */
+.home-ending {
+  position: relative;
+  display: grid;
+  grid-template-columns: 64px 1fr auto;
+  align-items: center;
+  gap: 26px;
+  margin-top: 72px;
+  margin-bottom: 92px;
+  padding: 44px 48px;
+  border-radius: 30px;
+  background: var(--deep);
+  color: #fff;
+  box-shadow: 0 24px 48px -32px rgb(36 74 48 / 75%);
+}
+
+.home-ending::after {
+  content: "";
+  position: absolute;
+  left: 44px;
+  bottom: -17px;
+  width: 28px;
+  height: 18px;
+  background: var(--deep);
+  clip-path: polygon(0 0, 100% 0, 0 100%);
+}
+
+.home-ending .section-kicker {
+  color: #d6c7b7;
+}
+
+.ending-doodle {
+  color: #c5b19c;
+  width: 58px;
+  height: 58px;
+}
+
+.home-ending h2 {
+  margin: 8px 0 6px;
+  font-size: clamp(28px, 3vw, 38px);
+  letter-spacing: var(--display-tracking);
+}
+
+.home-ending p {
+  margin: 0;
+  color: #e6dcd1;
+  font-size: 15px;
+  line-height: 1.55;
+}
+
+.ending-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+  min-height: 52px;
+  padding: 14px 20px;
+  border-radius: 999px;
+  background: #fff;
+  color: var(--deep);
+  font-size: 15px;
+  font-weight: 750;
+  transition:
+    background 0.18s,
+    transform 0.18s;
+}
+
+.ending-link:hover {
+  background: #f6f1eb;
+  transform: translateY(-1px);
+}
+
+.home-ending .ending-link:focus-visible {
+  outline-color: #fff;
+}
+
+.home-page a:focus-visible,
+.home-page button:focus-visible,
+.home-page summary:focus-visible {
+  outline: 3px solid #b0987f;
+  outline-offset: 3px;
+}
+
+@media (max-width: 980px) {
+  .home-hero-grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: none;
+    grid-template-areas:
+      "head"
+      "visual"
+      "copy";
+    min-height: 0;
+    row-gap: 30px;
+  }
+  .hero-head h1 {
+    font-size: clamp(54px, 9vw, 76px);
+  }
+  .hero-visual {
+    justify-self: start;
+    width: min(100%, 520px);
+  }
+  .hero-description {
+    margin-top: 4px;
+  }
+}
+
+@media (max-width: 700px) {
+  .home-hero-grid {
+    row-gap: 24px;
+    padding-top: 34px;
+    padding-bottom: 52px;
+  }
+  .hero-head h1 {
+    margin-top: 18px;
+    font-size: clamp(46px, 13.5vw, 64px);
+  }
+  .hero-visual {
+    width: 100%;
+    padding-inline: 6%;
+  }
+  .home-hero::before {
+    width: 100%;
+    -webkit-mask-image: radial-gradient(90% 40% at 60% 52%, #000 25%, transparent 75%);
+    mask-image: radial-gradient(90% 40% at 60% 52%, #000 25%, transparent 75%);
+  }
+  .card-preview figcaption {
+    margin-top: 22px;
+  }
+  .card-themes button {
+    min-height: 60px;
+    padding: 9px 10px 9px 12px;
+    font-size: 13px;
+  }
+  .hero-description {
+    font-size: 15px;
+    line-height: 1.7;
+    min-height: 5.1em;
+  }
+  .hero-buy {
+    margin: 22px 0 18px;
+  }
+  .hero-price strong {
+    font-size: 36px;
+  }
+  .hero-copy .purchase-actions {
+    max-width: none;
+  }
+  .home-notes {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "heading"
+      "list"
+      "aside";
+    row-gap: 30px;
+    padding-top: 64px;
+    padding-bottom: 72px;
+  }
+  .notes-list {
+    grid-template-columns: 1fr;
+  }
+  .notes-list li,
+  .notes-list li + li {
+    display: grid;
+    grid-template-columns: 58px 1fr;
+    column-gap: 14px;
+    padding: 20px 0;
+    border-left: 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .note-index {
+    grid-row: span 2;
+    margin: 0;
+    font-size: 56px;
+  }
+  .home-faq {
+    padding: 64px 0 72px;
+  }
+  .faq-layout {
+    display: block;
+  }
+  .questions-heading {
+    margin-bottom: 24px;
+  }
+  .question-list summary {
+    font-size: 15px;
+  }
+  .home-ending {
+    grid-template-columns: 44px 1fr;
+    gap: 8px 14px;
+    margin-top: 44px;
+    margin-bottom: 64px;
+    padding: 28px 24px;
+    border-radius: 24px;
+  }
+  .ending-doodle {
+    align-self: start;
+    width: 44px;
+    height: 44px;
+  }
+  .home-ending h2 {
+    font-size: 27px;
+  }
+  .ending-link {
+    grid-column: 1 / -1;
+    margin-top: 12px;
+  }
+}
+
+@media (max-width: 420px) {
+  .hero-purchase {
+    min-height: 178px;
+  }
+  .hero-copy .purchase-actions {
+    grid-template-columns: 1fr;
+  }
+  .hero-copy .purchase-actions .purchase-main {
+    min-height: 84px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-page *,
+  .home-page *::before,
+  .home-page *::after {
+    scroll-behavior: auto;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+  .card-stage::after {
+    display: none;
+  }
+  .card-deck-back {
+    transition: none;
+  }
+  .hero-kicker::before {
+    animation: none;
+  }
+}

@@ -1,0 +1,4 @@
+CEDAR LOCAL DEMO
+Theme: Saturn
+This synthetic TXT sample demonstrates a delivery state only.
+No real purchased asset, account, credential or customer information is included.

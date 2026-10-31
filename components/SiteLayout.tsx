@@ -1,0 +1,6 @@
+import Link from 'next/link';
+import {htmlLang,locales,pathFor,ui,type Locale} from '@/lib/i18n';
+import '@/app/globals.css';
+import '@/app/home.css';
+import '@/app/demo.css';
+export function SiteLayout({locale,children}:{locale:Locale;children:React.ReactNode}){const t=ui[locale];return <html lang={htmlLang[locale]}><body><div className="demo-banner">{t.demo}</div><a className="demo-skip" href="#main">Skip to content</a><header className="cedar-header"><div className="container cedar-header-inner"><Link href={pathFor(locale)} className="cedar-brand"><img src="/mark.svg" width={30} height={30} alt=""/><span>CEDAR<small>松间卡集 · DEMO</small></span></Link><nav aria-label="Navigation"><Link href={pathFor(locale)}>{t.home}</Link><Link href={pathFor(locale,'/orders')}>{t.orders}</Link><Link href={pathFor(locale,'/help')}>{t.help}</Link></nav><div className="locale-links" aria-label="Language">{locales.map(value=><Link href={pathFor(value)} key={value} aria-current={locale===value?'page':undefined}>{value.toUpperCase()}</Link>)}</div></div></header><div id="main">{children}</div><footer className="container cedar-footer"><strong>CEDAR / LOCAL MARKET DEMO</strong><span>{locale==='zh'?'自制占位卡面 · 四张生成原图尚未接入':'Original vector placeholders · generated originals pending'}</span><Link href={pathFor(locale,'/chat')}>{t.support} ↗</Link></footer></body></html>;}
